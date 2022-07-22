@@ -39,5 +39,37 @@ describe('Calculator testing:', ()=>{
             });
         });
     });
+
+    describe('Testing Multiplication:', () => {
+        
+        beforeEach(() => {
+            calcInstance = new MyCalc(initialValue);            
+        });
+
+        verifyValues.forEach(checkValue => {
+            it(`should ${initialValue} * ${checkValue} = ${initialValue * checkValue}`, () => {
+                calcInstance.multiply(checkValue)
+                const totalResult = calcInstance.getTotal();
+                const expectedResult = initialValue * checkValue;
+                expect(totalResult).toBe(expectedResult);
+            });
+        });
+    });
+
+    describe('Testing Division:', () => {
+        
+        beforeEach(() => {
+            calcInstance = new MyCalc(initialValue);            
+        });
+
+        verifyValues.forEach(checkValue => {
+            it(`should ${initialValue} / ${checkValue} = ${initialValue / checkValue}`, () => {
+                calcInstance.divide(checkValue)
+                const totalResult = calcInstance.getTotal();
+                const expectedResult = initialValue / checkValue;
+                expect(totalResult).toBe(expectedResult);
+            });
+        });
+    });
     
 })
