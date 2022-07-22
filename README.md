@@ -1,6 +1,7 @@
 # Simple calculator using TypeScript
 
-Nothing here :(
+Nothing here yet :(
 
-###Tests
+## Tests
+
 `npm run test`
