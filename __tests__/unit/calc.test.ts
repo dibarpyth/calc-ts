@@ -73,16 +73,31 @@ describe('Calculator testing:', ()=>{
         });
     });
 
-    describe('Testing getting total (getTotal()):', () => {
+    describe('Testing getting total ( getTotal() ):', () => {
         
         beforeEach(() => {
             calcInstance = new MyCalc(initialValue);            
         });
 
         it(`should return ${initialValue + 55} for ${initialValue} + 55`, () => {
-            calcInstance.add(55)
+            calcInstance.add(55);
             const totalResult = calcInstance.getTotal();
             const expectedResult = initialValue + 55;
+            expect(totalResult).toBe(expectedResult);
+        });
+    });
+
+    describe('Testing clearing the result ( clearResult() ):', () => {
+        
+        beforeEach(() => {
+            calcInstance = new MyCalc(initialValue);            
+        });
+
+        it(`should return 0`, () => {
+            calcInstance.add(55);
+            calcInstance.clearResult();
+            const totalResult = calcInstance.total;
+            const expectedResult = 0;
             expect(totalResult).toBe(expectedResult);
         });
     });
