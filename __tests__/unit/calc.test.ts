@@ -16,7 +16,8 @@ describe('Calculator testing:', ()=>{
         verifyValues.forEach(checkValue => {
             it(`should ${initialValue} + ${checkValue} = ${initialValue + checkValue}`, () => {
                 calcInstance.add(checkValue)
-                const totalResult = calcInstance.getTotal();
+                // const totalResult = calcInstance.getTotal();
+                const totalResult = calcInstance.total;
                 const expectedResult = initialValue + checkValue;
                 expect(totalResult).toBe(expectedResult);
             });
@@ -33,7 +34,7 @@ describe('Calculator testing:', ()=>{
         verifyValues.forEach(checkValue => {
             it(`should ${initialValue} - ${checkValue} = ${initialValue - checkValue}`, () => {
                 calcInstance.subtract(checkValue)
-                const totalResult = calcInstance.getTotal();
+                const totalResult = calcInstance.total;
                 const expectedResult = initialValue - checkValue;
                 expect(totalResult).toBe(expectedResult);
             });
@@ -49,7 +50,7 @@ describe('Calculator testing:', ()=>{
         verifyValues.forEach(checkValue => {
             it(`should ${initialValue} * ${checkValue} = ${initialValue * checkValue}`, () => {
                 calcInstance.multiply(checkValue)
-                const totalResult = calcInstance.getTotal();
+                const totalResult = calcInstance.total;
                 const expectedResult = initialValue * checkValue;
                 expect(totalResult).toBe(expectedResult);
             });
@@ -65,10 +66,24 @@ describe('Calculator testing:', ()=>{
         verifyValues.forEach(checkValue => {
             it(`should ${initialValue} / ${checkValue} = ${initialValue / checkValue}`, () => {
                 calcInstance.divide(checkValue)
-                const totalResult = calcInstance.getTotal();
+                const totalResult = calcInstance.total;
                 const expectedResult = initialValue / checkValue;
                 expect(totalResult).toBe(expectedResult);
             });
+        });
+    });
+
+    describe('Testing getting total (getTotal()):', () => {
+        
+        beforeEach(() => {
+            calcInstance = new MyCalc(initialValue);            
+        });
+
+        it(`should return ${initialValue + 55} for ${initialValue} + 55`, () => {
+            calcInstance.add(55)
+            const totalResult = calcInstance.getTotal();
+            const expectedResult = initialValue + 55;
+            expect(totalResult).toBe(expectedResult);
         });
     });
     
