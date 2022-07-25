@@ -5,7 +5,7 @@ describe('Calculator testing:', ()=>{
     let calcInstance: MyCalc;
 
     const initialValue = 5;
-    const verifyValues = [0, 0.11, 1, 3.5, 5, 999, -0.11, -1, -5, -999];
+    const verifyValues = [0, 0.11, 1, 3.5, 5, 999, -0.11, -1, -5, -999, NaN];
     
     describe.each(verifyValues)('Testing Addition by params: ', (checkValue) => {
         beforeEach(() => {
