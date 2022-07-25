@@ -17,7 +17,13 @@ class MyCalc {
     }
 
     divide(inputNumber: number): void {
-        this.total /= inputNumber;
+        
+        if(inputNumber !== 0) {
+            this.total /= inputNumber;
+        } else {
+            // this.total = new Error('Can\'t divide by zero!');
+            throw new Error('You can\'t divide by zero!');
+        }
     }
 
     clearResult(): void {

@@ -7,6 +7,20 @@ describe('Calculator testing:', ()=>{
     let calcInstance: MyCalc;
     const verifyValues = [0, 0.11, 1, 3.5, 5, 999, -0.11, -1, -5, -999];
     
+    describe.each([0, 0.11, 1, 3.5, 5, 999, -0.11, -1, -5, -999])('Testing Addition by params: ', (checkValue) => {
+
+        beforeEach(() => {
+            calcInstance = new MyCalc(initialValue);            
+        });
+        it(`should ${initialValue} + ${checkValue} = ${initialValue + checkValue}`, () => {
+            calcInstance.add(checkValue)
+            // const totalResult = calcInstance.getTotal();
+            const totalResult = calcInstance.total;
+            const expectedResult = initialValue + checkValue;
+            expect(totalResult).toBe(expectedResult);
+        });
+    });
+
     describe('Testing Addition:', () => {
 
         beforeEach(() => {
@@ -57,20 +71,30 @@ describe('Calculator testing:', ()=>{
         });
     });
 
-    describe('Testing Division:', () => {
+    describe.only.each([
+        [5, 2, 2.5],
+        [1, 20, 0.05],
+        [12, 99999999999999999999999999999, 12 / 99999999999999999999999999999],
+        [0, 5, 0],
+        [5, 0, 0]
+    ])('Testing Division:', (a, b, expected) => {
         
         beforeEach(() => {
-            calcInstance = new MyCalc(initialValue);            
+            calcInstance = new MyCalc(a);            
         });
 
-        verifyValues.forEach(checkValue => {
-            it(`should ${initialValue} / ${checkValue} = ${initialValue / checkValue}`, () => {
-                calcInstance.divide(checkValue)
+        if(b !== 0) {
+            it(`should ${a} / ${b} = ${a / b}`, () => {
+                calcInstance.divide(b)
                 const totalResult = calcInstance.total;
-                const expectedResult = initialValue / checkValue;
-                expect(totalResult).toBe(expectedResult);
+                expect(totalResult).toBe(expected);
             });
-        });
+        } else {
+            it(`should return Error: You can\'t divide by zero!`, () => {
+                expect(() => {calcInstance.divide(b)}).toThrow("You can't divide by zero!");
+            });
+        }
+ 
     });
 
     describe('Testing getting total ( getTotal() ):', () => {
